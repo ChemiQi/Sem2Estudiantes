@@ -1,6 +1,5 @@
 package com.example.Sem2Estudiantes.infraestructure.repository;
 
-import com.example.Sem2Estudiantes.domain.EstudiantoJpa;
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoOutput;
 import com.example.Sem2Estudiantes.infraestructure.repository.jpa.EstudianteRepository;
 import com.example.Sem2Estudiantes.infraestructure.repository.port.DeleteEstudiantePort;

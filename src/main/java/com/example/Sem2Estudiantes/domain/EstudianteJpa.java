@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class EstudiantoJpa {
+public class EstudianteJpa {
     //Id, Nombre,Apellido, correo, Fecha Entrada, Ciudad, Numero Horas semanales, Especialidad (Front/Back/..),Estado (activo/inactivo);
 
     @Id
@@ -32,8 +32,7 @@ public class EstudiantoJpa {
     String especialidad;
     String estado;
 
-    public EstudiantoJpa(EstudianteDtoInput estudianteDtoInput){
-        this.id = estudianteDtoInput.getId();
+    public EstudianteJpa(EstudianteDtoInput estudianteDtoInput){
         this.nombre = estudianteDtoInput.getNombre();
         this.apellido = estudianteDtoInput.getApellido();
         this.correo = estudianteDtoInput.getCorreo();
