@@ -11,8 +11,6 @@ import java.util.Date;
 @AllArgsConstructor
 public class EstudianteDtoOutput {
 
-    int id;
-
     String nombre;
     String apellido;
     String correo;
@@ -23,7 +21,6 @@ public class EstudianteDtoOutput {
     String estado;
 
     public EstudianteDtoOutput(EstudianteDtoInput estudianteDtoInput){
-        this.id = estudianteDtoInput.getId();
         this.nombre = estudianteDtoInput.getNombre();
         this.apellido = estudianteDtoInput.getApellido();
         this.correo = estudianteDtoInput.getCorreo();

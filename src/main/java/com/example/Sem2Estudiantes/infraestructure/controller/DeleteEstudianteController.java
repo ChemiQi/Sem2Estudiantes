@@ -1,28 +1,26 @@
 package com.example.Sem2Estudiantes.infraestructure.controller;
 
-import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoInput;
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoOutput;
 import com.example.Sem2Estudiantes.infraestructure.repository.port.AddEstudiantePort;
+import com.example.Sem2Estudiantes.infraestructure.repository.port.DeleteEstudiantePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping("estudiante")
 @CrossOrigin("*")
-public class AddEstudianteController implements com.example.Sem2Estudiantes.infraestructure.repository.port.AddEstudiantePort {
+public class DeleteEstudianteController {
 
     @Autowired
-    private AddEstudiantePort addEstudiantePort;
+    private DeleteEstudiantePort deleteEstudiantePort;
 
-    @PostMapping
-    public ResponseEntity <EstudianteDtoOutput> añadirEstudiante(@RequestBody EstudianteDtoInput estudianteDtoInput){
+    @DeleteMapping("{id}")
+    public ResponseEntity<EstudianteDtoOutput> borrarEstudiante(@PathVariable Integer id){
         try{
-            return addEstudiantePort.añadirEstudiante(estudianteDtoInput);
+            return deleteEstudiantePort.borrarEstudiante(id);
         }catch(Exception e){
             return ResponseEntity.notFound().build();
         }
     }
-
 }

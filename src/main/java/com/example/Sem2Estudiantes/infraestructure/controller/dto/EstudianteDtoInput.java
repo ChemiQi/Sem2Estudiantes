@@ -11,8 +11,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class EstudianteDtoInput {
 
-    int id;
-
     String nombre;
     String apellido;
     String correo;
