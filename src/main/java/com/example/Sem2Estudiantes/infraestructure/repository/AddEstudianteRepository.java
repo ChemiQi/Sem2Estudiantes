@@ -30,7 +30,7 @@ public class AddEstudianteRepository implements AddEstudiantePort {
            EstudianteDtoOutput estudianteDtoOutput =  new EstudianteDtoOutput(estudianteDtoInput);
            return ResponseEntity.ok(estudianteDtoOutput);
         }catch (Exception e){
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build(); // hemos puesto notFound porque no sabemos muy bien cual poner
         }
     }
 }

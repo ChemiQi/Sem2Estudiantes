@@ -19,8 +19,7 @@ public class FindByIdEstudianteController {
     private FindByIdEstudiantePort findByIdEstudiantePort;
 
     @GetMapping("{id}")
-    public Optional<EstudianteJpa> findByIdEstudiante(@PathVariable Integer id){
-        Optional<EstudianteJpa> estudianteJpa = findByIdEstudiantePort.findByIdEstudiante(id);
-        return estudianteJpa;
+    public EstudianteDtoOutput findByIdEstudiante(@PathVariable Integer id){
+        return findByIdEstudiantePort.findByIdEstudiante(id);
     }
 }

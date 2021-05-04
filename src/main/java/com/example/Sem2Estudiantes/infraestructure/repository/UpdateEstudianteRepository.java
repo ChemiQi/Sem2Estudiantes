@@ -22,7 +22,7 @@ public class UpdateEstudianteRepository implements UpdateEstudiantePort {
     }
 
     private ResponseEntity<EstudianteDtoOutput> actualizarEstudianteRepository(int id,EstudianteDtoInput estudianteDtoInput) {
-        Optional<EstudianteJpa> estudianteOptional = estudianteRepository.findById(id);
+        Optional<EstudianteJpa> estudianteOptional = estudianteRepository.findById(id); //USAR ELSETRHOW, pero nose muy bien como funciona
         if(estudianteOptional.isPresent()){
             EstudianteJpa estudianteEncontrado = estudianteOptional.get();
             estudianteRepository.save(actualizarDatosEstudiante(estudianteEncontrado,estudianteDtoInput));
