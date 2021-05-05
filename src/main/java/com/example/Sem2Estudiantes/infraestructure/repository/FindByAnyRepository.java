@@ -55,26 +55,14 @@ public class FindByAnyRepository implements FindByAnyEstudiantePort {
                 case "nombre":
                     predicates.add(criteriaBuilder.like(root.get(field),(String)value));
                     break;
-                case "apellido":
-                    predicates.add(criteriaBuilder.like(root.get(field),"%"+(String)value+"%"));
-                    break;
-                case "correo":
+                default:
                     predicates.add(criteriaBuilder.like(root.get(field),"%"+(String)value+"%"));
                     break;
                 case "fechaEntrada":
                     predicates.add(criteriaBuilder.like(root.get(field),"%"+(Date)value+"%"));
                     break;
-                case "ciudad":
-                    predicates.add(criteriaBuilder.like(root.get(field),"%"+(String)value+"%"));
-                    break;
                 case "horasSemanales":
                     predicates.add(criteriaBuilder.like(root.get(field),"%"+(Integer)value+"%"));
-                    break;
-                case "especialidad":
-                    predicates.add(criteriaBuilder.like(root.get(field),"%"+(String)value+"%"));
-                    break;
-                case "estado":
-                    predicates.add(criteriaBuilder.like(root.get(field),"%"+(String)value+"%"));
                     break;
             }
         });
