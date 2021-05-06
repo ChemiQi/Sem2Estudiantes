@@ -1,6 +1,8 @@
 package com.example.Sem2Estudiantes.infraestructure.controller.dto;
 
 import com.example.Sem2Estudiantes.domain.EstudianteJpa;
+import com.example.Sem2Estudiantes.domain.branch;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -12,34 +14,66 @@ import java.util.Date;
 @AllArgsConstructor
 public class EstudianteDtoOutput {
 
-    String nombre;
-    String apellido;
-    String correo;
-    Date fechaEntrada;
-    String ciudad;
-    double horasSemanales;
-    String especialidad;
-    String estado;
+    int id_student;
+
+    @NotNull
+    String name;
+
+    @NotNull
+    String surname;
+
+    @NotNull
+    String company_email;
+
+    @NotNull
+    String personal_email;
+
+    @NotNull
+    String city;
+
+    @NotNull
+    double numHoursWeek;
+
+    String coments;
+
+    @NotNull
+    branch branch;
+
+    @NotNull
+    boolean active;
+
+    @NotNull
+    Date createDate;
+    Date terminationDate;
 
     public EstudianteDtoOutput(EstudianteDtoInput estudianteDtoInput){
-        this.nombre = estudianteDtoInput.getNombre();
-        this.apellido = estudianteDtoInput.getApellido();
-        this.correo = estudianteDtoInput.getCorreo();
-        this.fechaEntrada = estudianteDtoInput.getFechaEntrada();
-        this.ciudad = estudianteDtoInput.getCiudad();
-        this.horasSemanales = estudianteDtoInput.getHorasSemanales();
-        this.especialidad = estudianteDtoInput.getEspecialidad();
-        this.estado = estudianteDtoInput.getEstado();
+        this.name = estudianteDtoInput.getName();
+        this.surname = estudianteDtoInput.getSurname();
+        this.personal_email = estudianteDtoInput.getPersonal_email();
+        this.company_email = estudianteDtoInput.getCompany_email();
+        this.createDate = estudianteDtoInput.getCreateDate();
+        this.city = estudianteDtoInput.getCity();
+        this.numHoursWeek = estudianteDtoInput.getNumHoursWeek();
+        this.coments = estudianteDtoInput.getComents();
+        this.branch = estudianteDtoInput.getBranch();
+        this.active = estudianteDtoInput.isActive();
+        this.terminationDate = estudianteDtoInput.getTerminationDate();
     }
 
     public EstudianteDtoOutput(EstudianteJpa estudianteJpa){
-        this.nombre = estudianteJpa.getName();
-        this.apellido = estudianteJpa.getSurname();
-        this.correo = estudianteJpa.getPersonal_email();
-        this.fechaEntrada = estudianteJpa.getCreateDate();
-        this.ciudad = estudianteJpa.getCity();
-        this.horasSemanales = estudianteJpa.getNumHoursWeek();
-        this.especialidad = estudianteJpa.getEspecialidad();
-        this.estado = estudianteJpa.getEstado();
+        this.id_student = estudianteJpa.getId_student();
+        this.name = estudianteJpa.getName();
+        this.surname = estudianteJpa.getSurname();
+        this.personal_email = estudianteJpa.getPersonal_email();
+        this.company_email = estudianteJpa.getCompany_email();
+        this.createDate = estudianteJpa.getCreateDate();
+        this.city = estudianteJpa.getCity();
+        this.numHoursWeek = estudianteJpa.getNumHoursWeek();
+        this.coments = estudianteJpa.getComents();
+        this.branch = estudianteJpa.getBranch();
+        this.active = estudianteJpa.isActive();
+        this.terminationDate = estudianteJpa.getTerminationDate();
+        //this.especialidad = estudianteJpa.getEspecialidad();
+        //this.estado = estudianteJpa.getEstado();
     }
 }
