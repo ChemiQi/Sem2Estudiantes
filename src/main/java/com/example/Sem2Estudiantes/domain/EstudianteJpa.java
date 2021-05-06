@@ -1,12 +1,14 @@
 package com.example.Sem2Estudiantes.domain;
 
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoInput;
-import com.sun.istack.NotNull;
+//import com.sun.istack.NotNull;  -> con está importancion no deja crear mensajes
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 
@@ -21,22 +23,26 @@ public class EstudianteJpa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id_student;
 
-    @NotNull
+    @NotNull(message = "Nombre necesario")
     String name;
 
     @NotNull
     String surname;
 
-    @NotNull
+    @NotNull(message = "Correo electronico de empresa necesarias")
+    @Email(regexp=".*@.*\\..*", message = "Email formato incorrecto")
+    @Column(unique = true)
     String company_email;
 
-    @NotNull
+    @NotNull(message = "Correo electronico personal necesario")
+    @Email(regexp=".*@.*\\..*", message = "Email formato incorrecto")
+    @Column(unique = true)
     String personal_email;
 
-    @NotNull
+    @NotNull(message = "Ciudad necesaria")
     String city;
 
-    @NotNull
+    @NotNull(message = "Horas Semanales necesario")
     double numHoursWeek;
 
     String coments;
