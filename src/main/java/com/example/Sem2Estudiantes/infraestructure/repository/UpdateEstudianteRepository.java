@@ -34,22 +34,27 @@ public class UpdateEstudianteRepository implements UpdateEstudiantePort {
 
     private EstudianteJpa actualizarDatosEstudiante(EstudianteJpa estudianteEncontrado, EstudianteDtoInput estudianteDtoInput) {
 
-        if(estudianteDtoInput.getNombre()!= null)
-            estudianteEncontrado.setName(estudianteDtoInput.getNombre());
-        if(estudianteDtoInput.getApellido() != null)
-            estudianteEncontrado.setSurname(estudianteDtoInput.getApellido());
-        if(estudianteDtoInput.getCorreo() != null)
-            estudianteEncontrado.setPersonal_email(estudianteDtoInput.getCorreo());
-        if(estudianteDtoInput.getEstado() != null)
-            estudianteEncontrado.setEstado(estudianteDtoInput.getEstado());
-        if(estudianteDtoInput.getCiudad() != null)
-            estudianteEncontrado.setCity(estudianteDtoInput.getCiudad());
-        if(estudianteDtoInput.getEspecialidad() != null)
-            estudianteEncontrado.setEspecialidad(estudianteDtoInput.getEspecialidad());
-        if(estudianteDtoInput.getFechaEntrada()!= null)
-            estudianteEncontrado.setCreateDate(estudianteDtoInput.getFechaEntrada());
-        if(estudianteDtoInput.getHorasSemanales() != 0.0){
-            estudianteEncontrado.setNumHoursWeek(estudianteDtoInput.getHorasSemanales());
+        if(estudianteDtoInput.getName()!= null)
+            estudianteEncontrado.setName(estudianteDtoInput.getName());
+        if(estudianteDtoInput.getSurname() != null)
+            estudianteEncontrado.setSurname(estudianteDtoInput.getSurname());
+        if(estudianteDtoInput.getCompany_email() != null)
+            estudianteEncontrado.setPersonal_email(estudianteDtoInput.getCompany_email());
+        if(estudianteDtoInput.getPersonal_email() != null)
+            estudianteEncontrado.setPersonal_email(estudianteDtoInput.getPersonal_email());
+        if(estudianteDtoInput.getComents() != null)
+            estudianteEncontrado.setComents(estudianteDtoInput.getComents());
+        if(estudianteDtoInput.getCity() != null)
+            estudianteEncontrado.setCity(estudianteDtoInput.getCity());
+        if(estudianteDtoInput.getBranch() != null)
+            estudianteEncontrado.setBranch(estudianteDtoInput.getBranch());
+        if(estudianteDtoInput.getCreateDate()!= null)
+            estudianteEncontrado.setCreateDate(estudianteDtoInput.getCreateDate());
+        if(estudianteDtoInput.getTerminationDate()!= null)
+            estudianteEncontrado.setTerminationDate(estudianteDtoInput.getTerminationDate());
+        if(estudianteDtoInput.getNumHoursWeek() != 0.0){
+            estudianteEncontrado.setNumHoursWeek(estudianteDtoInput.getNumHoursWeek());
+
         }
         return estudianteEncontrado;
     }
