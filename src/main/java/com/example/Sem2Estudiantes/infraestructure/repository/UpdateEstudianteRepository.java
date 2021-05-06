@@ -35,21 +35,21 @@ public class UpdateEstudianteRepository implements UpdateEstudiantePort {
     private EstudianteJpa actualizarDatosEstudiante(EstudianteJpa estudianteEncontrado, EstudianteDtoInput estudianteDtoInput) {
 
         if(estudianteDtoInput.getNombre()!= null)
-            estudianteEncontrado.setNombre(estudianteDtoInput.getNombre());
+            estudianteEncontrado.setName(estudianteDtoInput.getNombre());
         if(estudianteDtoInput.getApellido() != null)
-            estudianteEncontrado.setApellido(estudianteDtoInput.getApellido());
+            estudianteEncontrado.setSurname(estudianteDtoInput.getApellido());
         if(estudianteDtoInput.getCorreo() != null)
-            estudianteEncontrado.setCorreo(estudianteDtoInput.getCorreo());
+            estudianteEncontrado.setPersonal_email(estudianteDtoInput.getCorreo());
         if(estudianteDtoInput.getEstado() != null)
             estudianteEncontrado.setEstado(estudianteDtoInput.getEstado());
         if(estudianteDtoInput.getCiudad() != null)
-            estudianteEncontrado.setCiudad(estudianteDtoInput.getCiudad());
+            estudianteEncontrado.setCity(estudianteDtoInput.getCiudad());
         if(estudianteDtoInput.getEspecialidad() != null)
             estudianteEncontrado.setEspecialidad(estudianteDtoInput.getEspecialidad());
         if(estudianteDtoInput.getFechaEntrada()!= null)
-            estudianteEncontrado.setFechaEntrada(estudianteDtoInput.getFechaEntrada());
+            estudianteEncontrado.setCreateDate(estudianteDtoInput.getFechaEntrada());
         if(estudianteDtoInput.getHorasSemanales() != 0.0){
-            estudianteEncontrado.setHorasSemanales(estudianteDtoInput.getHorasSemanales());
+            estudianteEncontrado.setNumHoursWeek(estudianteDtoInput.getHorasSemanales());
         }
         return estudianteEncontrado;
     }

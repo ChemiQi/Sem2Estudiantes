@@ -21,25 +21,30 @@ public class EstudianteJpa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    int id_student;
 
-    String nombre;
-    String apellido;
-    String correo;
-    Date fechaEntrada;
-    String ciudad;
-    double horasSemanales;
+    String name;
+    String surname;
+    String company_email;
+    String personal_email;
+    String city;
+    double numHoursWeek;
+    String coments;
+    //branch
     String especialidad;
-    String estado;
+    boolean active;
+    Date createDate;
+    Date terminationDate;
+
 
     public EstudianteJpa(EstudianteDtoInput estudianteDtoInput){
-        this.nombre = estudianteDtoInput.getNombre();
-        this.apellido = estudianteDtoInput.getApellido();
-        this.correo = estudianteDtoInput.getCorreo();
-        this.fechaEntrada = estudianteDtoInput.getFechaEntrada();
-        this.ciudad = estudianteDtoInput.getCiudad();
-        this.horasSemanales = estudianteDtoInput.getHorasSemanales();
+        this.name = estudianteDtoInput.getNombre();
+        this.surname = estudianteDtoInput.getApellido();
+        this.personal_email = estudianteDtoInput.getCorreo();
+        this.createDate = estudianteDtoInput.getFechaEntrada();
+        this.city = estudianteDtoInput.getCiudad();
+        this.numHoursWeek = estudianteDtoInput.getHorasSemanales();
         this.especialidad = estudianteDtoInput.getEspecialidad();
-        this.estado = estudianteDtoInput.getEstado();
+        //this.estado = estudianteDtoInput.getEstado();
     }
 }

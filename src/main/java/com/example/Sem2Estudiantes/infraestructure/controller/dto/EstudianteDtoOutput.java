@@ -33,12 +33,12 @@ public class EstudianteDtoOutput {
     }
 
     public EstudianteDtoOutput(EstudianteJpa estudianteJpa){
-        this.nombre = estudianteJpa.getNombre();
-        this.apellido = estudianteJpa.getApellido();
-        this.correo = estudianteJpa.getCorreo();
-        this.fechaEntrada = estudianteJpa.getFechaEntrada();
-        this.ciudad = estudianteJpa.getCiudad();
-        this.horasSemanales = estudianteJpa.getHorasSemanales();
+        this.nombre = estudianteJpa.getName();
+        this.apellido = estudianteJpa.getSurname();
+        this.correo = estudianteJpa.getPersonal_email();
+        this.fechaEntrada = estudianteJpa.getCreateDate();
+        this.ciudad = estudianteJpa.getCity();
+        this.horasSemanales = estudianteJpa.getNumHoursWeek();
         this.especialidad = estudianteJpa.getEspecialidad();
         this.estado = estudianteJpa.getEstado();
     }
