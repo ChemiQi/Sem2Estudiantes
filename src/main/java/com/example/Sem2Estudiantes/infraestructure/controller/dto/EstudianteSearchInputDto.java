@@ -12,30 +12,15 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EstudianteSearchInputDto {
-    @NotNull
+
     String surname;
-
-    @NotNull
     String company_email;
-
-    @NotNull
     String personal_email;
-
-    @NotNull
     String city;
-
-    @NotNull
     double numHoursWeek;
-
     String coments;
-
-    @NotNull
     branch branch;
-
-    @NotNull
     boolean active;
-
-    @NotNull
     Date createDate;
     Date terminationDate;
 }

@@ -1,5 +1,6 @@
 package com.example.Sem2Estudiantes.domain;
 
+import com.example.Sem2Estudiantes.configurations.StringPrefixedSequenceIdGenerator;
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoInput;
 //import com.sun.istack.NotNull;  -> con está importancion no deja crear mensajes
 import lombok.AllArgsConstructor;
@@ -7,13 +8,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
-import org.hibernate.id.IncrementGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 
@@ -25,7 +24,14 @@ public class EstudianteJpa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estudiantes_seq")
-    @GenericGenerator(name = "estudiantes_seq", strategy = "uuid")
+    @GenericGenerator(
+            name = "estudiantes_seq",
+            strategy = "com.example.Sem2Estudiantes.configurations.StringPrefixedSequenceIdGenerator",
+            parameters = {
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "1"),
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "EST"),
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%08d")
+            })
     String id_student;
 
     @NotNull(message = "Nombre necesario")
