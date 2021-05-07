@@ -5,6 +5,9 @@ import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoI
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+import org.hibernate.id.IncrementGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -20,7 +23,8 @@ public class EstudianteJpa {
     //Id, Nombre,Apellido, correo, Fecha Entrada, Ciudad, Numero Horas semanales, Especialidad (Front/Back/..),Estado (activo/inactivo);
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estudiantes_seq")
+    @GenericGenerator(name = "estudiantes_seq", strategy = "uuid")
     int id_student;
 
     @NotNull(message = "Nombre necesario")
