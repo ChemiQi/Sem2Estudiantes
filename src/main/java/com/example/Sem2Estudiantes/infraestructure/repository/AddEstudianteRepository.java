@@ -25,15 +25,26 @@ public class AddEstudianteRepository implements AddEstudiantePort {
     }
 
     private ResponseEntity<EstudianteDtoOutput> añadirEstudianteRepository(EstudianteDtoInput estudianteDtoInput){
-        try {
-            System.out.println("Intenta guardar");
+        if(!comprobarNombreYApellido(estudianteDtoInput)) {
+            try {
 
-            estudianteRepository.save(new EstudianteJpa(estudianteDtoInput));
-            System.out.println("No guyarda");
-           EstudianteDtoOutput estudianteDtoOutput =  new EstudianteDtoOutput(estudianteDtoInput);
-           return ResponseEntity.ok(estudianteDtoOutput);
-        }catch (Exception e){
-            return ResponseEntity.notFound().build(); // hemos puesto notFound porque no sabemos muy bien cual poner
+                estudianteRepository.save(new EstudianteJpa(estudianteDtoInput));
+                EstudianteDtoOutput estudianteDtoOutput = new EstudianteDtoOutput(estudianteDtoInput);
+                return ResponseEntity.ok(estudianteDtoOutput);
+            } catch (Exception e) {
+                return ResponseEntity.notFound().build(); // hemos puesto notFound porque no sabemos muy bien cual poner
+            }
+        }else{
+            System.out.println("NO ENTRA EN EL ENCONTRAR APELLIDO Y BOMBRE");
+
+            return ResponseEntity.notFound().build();
         }
+
+    }
+    private boolean comprobarNombreYApellido(EstudianteDtoInput estudianteDtoInput){
+        if(estudianteRepository.findByNameAndSurname(estudianteDtoInput.getName(),estudianteDtoInput.getSurname()) != null){
+            return true;
+        }
+        return false;
     }
 }

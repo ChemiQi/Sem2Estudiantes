@@ -12,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -41,12 +42,14 @@ public class EstudianteJpa {
     String surname;
 
     @NotNull(message = "Correo electronico de empresa necesarias")
-    @Email(regexp=".*@.*\\..*", message = "Email formato incorrecto")
+    @Email
+    @NotBlank
     @Column(unique = true)
     String company_email;
 
     @NotNull(message = "Correo electronico personal necesario")
-    @Email(message = "Email formato incorrecto")
+    @Email
+    @NotBlank
     @Column(unique = true)
     String personal_email;
 

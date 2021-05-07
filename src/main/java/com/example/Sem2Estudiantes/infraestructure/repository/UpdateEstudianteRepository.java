@@ -25,9 +25,17 @@ public class UpdateEstudianteRepository implements UpdateEstudiantePort {
         Optional<EstudianteJpa> estudianteOptional = estudianteRepository.findById(id); //USAR ELSETRHOW, pero nose muy bien como funciona
         if(estudianteOptional.isPresent()){
             EstudianteJpa estudianteEncontrado = estudianteOptional.get();
-            estudianteRepository.save(actualizarDatosEstudiante(estudianteEncontrado,estudianteDtoInput));
-            return ResponseEntity.ok().build();
+            EstudianteJpa estudianteActualizado = actualizarDatosEstudiante(estudianteEncontrado,estudianteDtoInput);
+            if(!comprobarNombreYApellido(estudianteActualizado)){
+               // estudianteRepository.save(actualizarDatosEstudiante(estudianteEncontrado,estudianteDtoInput));
+                estudianteRepository.save(estudianteActualizado);  //--> No se si es la mejor manera de hacerlo, ya que ocupo espacio al guardar estudianteActualizado
+                return ResponseEntity.ok().build();
+            }else {
+                System.out.println("No actualiza, nombre y apellidos repetidos");
+                return ResponseEntity.notFound().build();
+            }
         }else{
+            System.out.println("No encuentra el id del estudiante a actualizar");
             return ResponseEntity.notFound().build();
         }
     }
@@ -57,5 +65,12 @@ public class UpdateEstudianteRepository implements UpdateEstudiantePort {
 
         }
         return estudianteEncontrado;
+    }
+
+    private boolean comprobarNombreYApellido(EstudianteJpa estudianteJpa){
+        if(estudianteRepository.findByNameAndSurname(estudianteJpa.getName(),estudianteJpa.getSurname()) != null){
+            return true;
+        }
+        return false;
     }
 }

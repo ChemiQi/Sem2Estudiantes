@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface EstudianteRepository extends CrudRepository<EstudianteJpa,String> {
     public List<EstudianteJpa> getData(HashMap<String,Object> conditions);
+    public EstudianteJpa findByNameAndSurname(String name, String surname);
 }
