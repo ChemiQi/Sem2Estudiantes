@@ -4,6 +4,7 @@ import com.example.Sem2Estudiantes.domain.branch;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -13,33 +14,27 @@ import java.util.Date;
 @NoArgsConstructor
 public class EstudianteDtoInput {
 
-    @NotNull
+
     String name;
 
-    @NotNull
     String surname;
 
-    @NotNull
     String company_email;
 
-    @NotNull
     String personal_email;
 
-    @NotNull
     String city;
 
-    @NotNull
     double numHoursWeek;
 
     String coments;
 
-    @NotNull
     branch branch;
 
-    @NotNull
     boolean active;
 
-    @NotNull
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     Date createDate;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     Date terminationDate;
 }

@@ -8,10 +8,12 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.id.IncrementGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 
@@ -38,7 +40,7 @@ public class EstudianteJpa {
     String company_email;
 
     @NotNull(message = "Correo electronico personal necesario")
-    @Email(regexp=".*@.*\\..*", message = "Email formato incorrecto")
+    @Email(message = "Email formato incorrecto")
     @Column(unique = true)
     String personal_email;
 
@@ -57,7 +59,9 @@ public class EstudianteJpa {
     boolean active;
 
     @NotNull
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     Date createDate;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     Date terminationDate;
 
 

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("estudiante")
@@ -17,7 +19,7 @@ public class AddEstudianteController implements com.example.Sem2Estudiantes.infr
     private AddEstudiantePort addEstudiantePort;
 
     @PostMapping
-    public ResponseEntity <EstudianteDtoOutput> añadirEstudiante(@RequestBody EstudianteDtoInput estudianteDtoInput){
+    public ResponseEntity <EstudianteDtoOutput> añadirEstudiante(@Valid @RequestBody EstudianteDtoInput estudianteDtoInput){
         try{
             System.out.println(estudianteDtoInput.toString());
             return addEstudiantePort.añadirEstudiante(estudianteDtoInput);
