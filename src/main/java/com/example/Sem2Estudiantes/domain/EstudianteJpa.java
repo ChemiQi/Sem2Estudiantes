@@ -20,7 +20,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 public class EstudianteJpa {
-    //Id, Nombre,Apellido, correo, Fecha Entrada, Ciudad, Numero Horas semanales, Especialidad (Front/Back/..),Estado (activo/inactivo);
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estudiantes_seq")
