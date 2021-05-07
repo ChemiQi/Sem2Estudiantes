@@ -19,6 +19,7 @@ public class AddEstudianteController implements com.example.Sem2Estudiantes.infr
     @PostMapping
     public ResponseEntity <EstudianteDtoOutput> añadirEstudiante(@RequestBody EstudianteDtoInput estudianteDtoInput){
         try{
+            System.out.println(estudianteDtoInput.toString());
             return addEstudiantePort.añadirEstudiante(estudianteDtoInput);
         }catch(Exception e){
             return ResponseEntity.notFound().build();

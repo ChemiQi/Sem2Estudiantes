@@ -14,7 +14,6 @@ import java.util.Date;
 @AllArgsConstructor
 public class EstudianteDtoOutput {
 
-    int id_student;
 
     @NotNull
     String name;
@@ -61,7 +60,7 @@ public class EstudianteDtoOutput {
     }
 
     public EstudianteDtoOutput(EstudianteJpa estudianteJpa){
-        this.id_student = estudianteJpa.getId_student();
+
         this.name = estudianteJpa.getName();
         this.surname = estudianteJpa.getSurname();
         this.personal_email = estudianteJpa.getPersonal_email();

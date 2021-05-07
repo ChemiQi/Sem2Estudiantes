@@ -18,7 +18,7 @@ public class UpdateEstudianteController {
     UpdateEstudiantePort updateEstudiantePort;
 
     @PutMapping("{id}")
-    public ResponseEntity<EstudianteDtoOutput> actualizarEstudiante(@PathVariable int id,@RequestBody EstudianteDtoInput estudianteDtoInput){
+    public ResponseEntity<EstudianteDtoOutput> actualizarEstudiante(@PathVariable String id,@RequestBody EstudianteDtoInput estudianteDtoInput){
         try{
             System.out.println("ENTRA");
             return updateEstudiantePort.actualizarEstudiante( id,estudianteDtoInput);

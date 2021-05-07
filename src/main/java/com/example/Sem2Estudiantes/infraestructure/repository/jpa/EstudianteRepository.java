@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.HashMap;
 import java.util.List;
 
-public interface EstudianteRepository extends CrudRepository<EstudianteJpa,Integer> {
+public interface EstudianteRepository extends CrudRepository<EstudianteJpa,String> {
     public List<EstudianteJpa> getData(HashMap<String,Object> conditions);
 }

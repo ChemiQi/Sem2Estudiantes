@@ -26,7 +26,10 @@ public class AddEstudianteRepository implements AddEstudiantePort {
 
     private ResponseEntity<EstudianteDtoOutput> añadirEstudianteRepository(EstudianteDtoInput estudianteDtoInput){
         try {
+            System.out.println("Intenta guardar");
+
             estudianteRepository.save(new EstudianteJpa(estudianteDtoInput));
+            System.out.println("No guyarda");
            EstudianteDtoOutput estudianteDtoOutput =  new EstudianteDtoOutput(estudianteDtoInput);
            return ResponseEntity.ok(estudianteDtoOutput);
         }catch (Exception e){

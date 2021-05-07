@@ -14,7 +14,7 @@ public class DeleteEstudianteRepository implements DeleteEstudiantePort {
     EstudianteRepository estudianteRepository;
 
     @Override
-    public ResponseEntity<EstudianteDtoOutput> borrarEstudiante(Integer id) {
+    public ResponseEntity<EstudianteDtoOutput> borrarEstudiante(String id) {
         try{
             estudianteRepository.deleteById(id);
             return ResponseEntity.ok().build();

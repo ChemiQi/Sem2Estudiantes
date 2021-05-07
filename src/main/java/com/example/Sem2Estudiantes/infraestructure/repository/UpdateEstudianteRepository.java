@@ -17,11 +17,11 @@ public class UpdateEstudianteRepository implements UpdateEstudiantePort {
     EstudianteRepository estudianteRepository;
 
     @Override
-    public ResponseEntity<EstudianteDtoOutput> actualizarEstudiante(int id,EstudianteDtoInput estudianteDtoInput) {
+    public ResponseEntity<EstudianteDtoOutput> actualizarEstudiante(String id,EstudianteDtoInput estudianteDtoInput) {
         return actualizarEstudianteRepository(id,estudianteDtoInput);
     }
 
-    private ResponseEntity<EstudianteDtoOutput> actualizarEstudianteRepository(int id,EstudianteDtoInput estudianteDtoInput) {
+    private ResponseEntity<EstudianteDtoOutput> actualizarEstudianteRepository(String id,EstudianteDtoInput estudianteDtoInput) {
         Optional<EstudianteJpa> estudianteOptional = estudianteRepository.findById(id); //USAR ELSETRHOW, pero nose muy bien como funciona
         if(estudianteOptional.isPresent()){
             EstudianteJpa estudianteEncontrado = estudianteOptional.get();

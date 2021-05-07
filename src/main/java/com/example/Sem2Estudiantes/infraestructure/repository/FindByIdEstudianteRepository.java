@@ -17,11 +17,11 @@ public class FindByIdEstudianteRepository implements FindByIdEstudiantePort {
     EstudianteRepository estudianteRepository;
 
     @Override
-    public EstudianteDtoOutput findByIdEstudiante(Integer id) {
+    public EstudianteDtoOutput findByIdEstudiante(String id) {
             return obtenerEstudianteDtoOutputByIdEstudiante(id);
     }
 
-    private EstudianteDtoOutput obtenerEstudianteDtoOutputByIdEstudiante(Integer id){
+    private EstudianteDtoOutput obtenerEstudianteDtoOutputByIdEstudiante(String id){
         Optional<EstudianteJpa> estudianteJpaOptional = estudianteRepository.findById(id);
         if(estudianteJpaOptional.isPresent()){
 

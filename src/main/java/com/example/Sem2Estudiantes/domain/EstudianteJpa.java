@@ -25,7 +25,7 @@ public class EstudianteJpa {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estudiantes_seq")
     @GenericGenerator(name = "estudiantes_seq", strategy = "uuid")
-    int id_student;
+    String id_student;
 
     @NotNull(message = "Nombre necesario")
     String name;
