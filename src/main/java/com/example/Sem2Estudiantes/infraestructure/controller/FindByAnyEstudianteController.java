@@ -19,7 +19,7 @@ public class FindByAnyEstudianteController {
     @Autowired
     FindByAnyEstudiantePort findByAnyEstudiantePort;
 
-    @GetMapping
+    /*@GetMapping
     public List<EstudianteJpa> buscarPorParametros(@RequestParam(required = false) String name,
                                                    @RequestParam(required = false) String apellido,
                                                    @RequestParam(required = false) String correo,
@@ -46,5 +46,10 @@ public class FindByAnyEstudianteController {
             data.put("numHoursWeek",numHoursWeek);
 
        return findByAnyEstudiantePort.listaPersonalizada2(data);
+    }*/
+    @GetMapping
+    public List<EstudianteDtoOutput> buscarPorParametros(@RequestParam String nombreColumna, @RequestParam String datoColumna){
+        return findByAnyEstudiantePort.listaPersonalizada(nombreColumna,datoColumna);
     }
+
 }

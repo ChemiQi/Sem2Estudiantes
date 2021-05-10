@@ -4,6 +4,7 @@ import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoI
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoOutput;
 import com.example.Sem2Estudiantes.infraestructure.repository.port.AddEstudiantePort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class AddEstudianteController implements com.example.Sem2Estudiantes.infr
             System.out.println(estudianteDtoInput.toString());
             return addEstudiantePort.añadirEstudiante(estudianteDtoInput);
         }catch(Exception e){
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 

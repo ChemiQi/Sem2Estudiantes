@@ -1,6 +1,7 @@
 package com.example.Sem2Estudiantes.infraestructure.controller.dto;
 
 import com.example.Sem2Estudiantes.domain.branch;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -33,8 +34,10 @@ public class EstudianteDtoInput {
 
     boolean active;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    //@DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     Date createDate;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    //@DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     Date terminationDate;
 }

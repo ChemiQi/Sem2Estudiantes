@@ -6,6 +6,7 @@ import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoO
 import com.example.Sem2Estudiantes.infraestructure.repository.jpa.EstudianteRepository;
 import com.example.Sem2Estudiantes.infraestructure.repository.port.AddEstudiantePort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
@@ -16,13 +17,18 @@ public class AddEstudianteRepository implements AddEstudiantePort {
     EstudianteRepository estudianteRepository;
 
     @Override
-    public ResponseEntity<EstudianteDtoOutput> añadirEstudiante(EstudianteDtoInput estudianteDtoInput) {
-        try{
-            return añadirEstudianteRepository(estudianteDtoInput);
-        }catch (Exception e){
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<EstudianteDtoOutput> añadirEstudiante(EstudianteDtoInput estudianteDtoInput) throws Exception{
+        if(comprobarFechaEntradaySalida(estudianteDtoInput)) {
+            try {
+                return añadirEstudianteRepository(estudianteDtoInput);
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+            }
+        }else {
+            throw new Exception("Fecha de entrada mayor que fecha salida");
         }
     }
+
 
     private ResponseEntity<EstudianteDtoOutput> añadirEstudianteRepository(EstudianteDtoInput estudianteDtoInput){
         if(!comprobarNombreYApellido(estudianteDtoInput)) {
@@ -46,5 +52,12 @@ public class AddEstudianteRepository implements AddEstudiantePort {
             return true;
         }
         return false;
+    }
+    private boolean comprobarFechaEntradaySalida(EstudianteDtoInput estudianteDtoInput){
+        if(estudianteDtoInput.getTerminationDate() != null && !estudianteDtoInput.getCreateDate().before(estudianteDtoInput.getTerminationDate())){
+            return false;
+        }else{
+            return true;
+        }
     }
 }

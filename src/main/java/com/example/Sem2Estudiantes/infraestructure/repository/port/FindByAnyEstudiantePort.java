@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface FindByAnyEstudiantePort {
-    //List<EstudianteDtoOutput> listaPersonalizada(String nombre_tabla, String parametro);
+    List<EstudianteDtoOutput> listaPersonalizada(String nombre_tabla, String parametro);
 
     List<EstudianteJpa> listaPersonalizada2(HashMap<String, Object> conditions);
 }

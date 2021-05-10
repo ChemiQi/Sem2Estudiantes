@@ -28,7 +28,8 @@ public class FindByAnyRepository implements FindByAnyEstudiantePort {
     @Autowired
     EstudianteRepository estudianteRepository;
 
-    /*public List<EstudianteDtoOutput> listaPersonalizada(String nombre_tabla, String parametro){
+    @Override
+    public List<EstudianteDtoOutput> listaPersonalizada(String nombre_tabla, String parametro){
 
         List<EstudianteDtoOutput> listaDeVueltaEstudianteDtoOutput = new ArrayList<>();
 
@@ -41,7 +42,7 @@ public class FindByAnyRepository implements FindByAnyEstudiantePort {
         }
 
         return listaDeVueltaEstudianteDtoOutput;
-    }*/
+    }
 
     @Override
     public List<EstudianteJpa> listaPersonalizada2(HashMap<String, Object> conditions){

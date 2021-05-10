@@ -3,6 +3,7 @@ package com.example.Sem2Estudiantes.domain;
 import com.example.Sem2Estudiantes.configurations.StringPrefixedSequenceIdGenerator;
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoInput;
 //import com.sun.istack.NotNull;  -> con está importancion no deja crear mensajes
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -57,7 +58,7 @@ public class EstudianteJpa {
     String city;
 
     @NotNull(message = "Horas Semanales necesario")
-    double numHoursWeek;
+    Double numHoursWeek;
 
     String coments;
 
@@ -65,12 +66,12 @@ public class EstudianteJpa {
     branch branch;
 
     @NotNull
-    boolean active;
+    Boolean active;
 
     @NotNull
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")//@DateTimeFormat(pattern = "dd/MM/yyyy")
     Date createDate;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")//@DateTimeFormat(pattern = "dd/MM/yyyy")
     Date terminationDate;
 
 
