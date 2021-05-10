@@ -14,12 +14,12 @@ public class DeleteEstudianteRepository implements DeleteEstudiantePort {
     EstudianteRepository estudianteRepository;
 
     @Override
-    public ResponseEntity<EstudianteDtoOutput> borrarEstudiante(String id) {
+    public ResponseEntity<EstudianteDtoOutput> borrarEstudiante(String id) throws Exception{
         try{
             estudianteRepository.deleteById(id);
             return ResponseEntity.ok().build();
         }catch (Exception e){
-            return ResponseEntity.notFound().build();
+            throw new Exception("Error al borrar por ID");
         }
     }
 }

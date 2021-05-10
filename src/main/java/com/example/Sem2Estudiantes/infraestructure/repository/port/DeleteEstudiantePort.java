@@ -5,5 +5,5 @@ import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoO
 import org.springframework.http.ResponseEntity;
 
 public interface DeleteEstudiantePort {
-    ResponseEntity<EstudianteDtoOutput> borrarEstudiante(String id);
+    ResponseEntity<EstudianteDtoOutput> borrarEstudiante(String id) throws Exception;
 }

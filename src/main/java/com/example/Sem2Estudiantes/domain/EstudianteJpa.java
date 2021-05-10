@@ -66,7 +66,7 @@ public class EstudianteJpa {
     branch branch;
 
     @NotNull
-    Boolean active;
+    boolean active;
 
     @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")//@DateTimeFormat(pattern = "dd/MM/yyyy")

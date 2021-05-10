@@ -16,11 +16,7 @@ public class DeleteEstudianteController {
     private DeleteEstudiantePort deleteEstudiantePort;
 
     @DeleteMapping("{id}")
-    public ResponseEntity<EstudianteDtoOutput> borrarEstudiante(@PathVariable String id){
-        try{
+    public ResponseEntity<EstudianteDtoOutput> borrarEstudiante(@PathVariable String id) throws Exception {
             return deleteEstudiantePort.borrarEstudiante(id);
-        }catch(Exception e){
-            return ResponseEntity.notFound().build();
-        }
     }
 }

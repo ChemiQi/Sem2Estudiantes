@@ -17,17 +17,16 @@ public class FindByIdEstudianteRepository implements FindByIdEstudiantePort {
     EstudianteRepository estudianteRepository;
 
     @Override
-    public EstudianteDtoOutput findByIdEstudiante(String id) {
+    public ResponseEntity<EstudianteDtoOutput> findByIdEstudiante(String id) {
             return obtenerEstudianteDtoOutputByIdEstudiante(id);
     }
 
-    private EstudianteDtoOutput obtenerEstudianteDtoOutputByIdEstudiante(String id){
+    private ResponseEntity<EstudianteDtoOutput> obtenerEstudianteDtoOutputByIdEstudiante(String id){
         Optional<EstudianteJpa> estudianteJpaOptional = estudianteRepository.findById(id);
         if(estudianteJpaOptional.isPresent()){
-
-            return new EstudianteDtoOutput(estudianteJpaOptional.get());
+            return ResponseEntity.ok(new EstudianteDtoOutput(estudianteJpaOptional.get()));
         }else{
-            return null;
+            return ResponseEntity.notFound().build();
         }
     }
     

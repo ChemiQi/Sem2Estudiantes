@@ -19,7 +19,7 @@ public class FindByIdEstudianteController {
     private FindByIdEstudiantePort findByIdEstudiantePort;
 
     @GetMapping("{id}")
-    public EstudianteDtoOutput findByIdEstudiante(@PathVariable String id){
+    public ResponseEntity<EstudianteDtoOutput> findByIdEstudiante(@PathVariable String id){
         return findByIdEstudiantePort.findByIdEstudiante(id);
     }
 }

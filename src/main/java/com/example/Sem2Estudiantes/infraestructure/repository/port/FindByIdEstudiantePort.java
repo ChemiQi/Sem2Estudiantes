@@ -7,5 +7,5 @@ import org.springframework.http.ResponseEntity;
 import java.util.Optional;
 
 public interface FindByIdEstudiantePort {
-    EstudianteDtoOutput findByIdEstudiante(String id);
+    ResponseEntity<EstudianteDtoOutput> findByIdEstudiante(String id);
 }
