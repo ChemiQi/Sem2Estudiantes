@@ -15,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class EstudianteDtoInput {
 
-
+    //TODO comprobar que los campos no sean nulos
     String name;
 
     String surname;
