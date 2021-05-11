@@ -21,7 +21,7 @@ public class FindByIdEstudianteRepository implements FindByIdEstudiantePort {
             return obtenerEstudianteDtoOutputByIdEstudiante(id);
     }
 
-    private ResponseEntity<EstudianteDtoOutput> obtenerEstudianteDtoOutputByIdEstudiante(String id){
+    private ResponseEntity<EstudianteDtoOutput> obtenerEstudianteDtoOutputByIdEstudiante(String id) {
         Optional<EstudianteJpa> estudianteJpaOptional = estudianteRepository.findById(id);
         if(estudianteJpaOptional.isPresent()){
             return ResponseEntity.ok(new EstudianteDtoOutput(estudianteJpaOptional.get()));

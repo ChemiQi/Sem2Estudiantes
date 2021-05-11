@@ -17,10 +17,10 @@ public class EstudianteSearchInputDto {
     String company_email;
     String personal_email;
     String city;
-    double numHoursWeek;
+    Double numHoursWeek;
     String coments;
     branch branch;
-    boolean active;
+    Boolean active;
     Date createDate;
     Date terminationDate;
 }

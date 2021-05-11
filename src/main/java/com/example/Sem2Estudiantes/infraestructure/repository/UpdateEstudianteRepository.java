@@ -21,10 +21,10 @@ public class UpdateEstudianteRepository implements UpdateEstudiantePort {
         return actualizarEstudianteRepository(id,estudianteDtoInput);
     }
 
-    private ResponseEntity<EstudianteDtoOutput> actualizarEstudianteRepository(String id,EstudianteDtoInput estudianteDtoInput) {
-        Optional<EstudianteJpa> estudianteOptional = estudianteRepository.findById(id); //USAR ELSETRHOW, pero nose muy bien como funciona
-        if(estudianteOptional.isPresent()){
-            EstudianteJpa estudianteEncontrado = estudianteOptional.get();
+    private ResponseEntity<EstudianteDtoOutput> actualizarEstudianteRepository(String id,EstudianteDtoInput estudianteDtoInput)  throws Exception{
+            var estudianteEncontrado = estudianteRepository.findById(id).orElseThrow(() -> new Exception("NO econtrado estudiatne con id: "+id)) ; //USAR ELSETRHOW, pero nose muy bien como funciona
+
+
             EstudianteJpa estudianteActualizado = actualizarDatosEstudiante(estudianteEncontrado,estudianteDtoInput);
             if(!comprobarNombreYApellido(estudianteActualizado)){
                // estudianteRepository.save(actualizarDatosEstudiante(estudianteEncontrado,estudianteDtoInput));
@@ -34,10 +34,7 @@ public class UpdateEstudianteRepository implements UpdateEstudiantePort {
                 System.out.println("No actualiza, nombre y apellidos repetidos");
                 return ResponseEntity.notFound().build();
             }
-        }else{
-            System.out.println("No encuentra el id del estudiante a actualizar");
-            return ResponseEntity.notFound().build();
-        }
+
     }
 
     private EstudianteJpa actualizarDatosEstudiante(EstudianteJpa estudianteEncontrado, EstudianteDtoInput estudianteDtoInput) {
@@ -68,9 +65,6 @@ public class UpdateEstudianteRepository implements UpdateEstudiantePort {
     }
 
     private boolean comprobarNombreYApellido(EstudianteJpa estudianteJpa){
-        if(estudianteRepository.findByNameAndSurname(estudianteJpa.getName(),estudianteJpa.getSurname()) != null){
-            return true;
-        }
-        return false;
+        return estudianteRepository.findByNameAndSurname(estudianteJpa.getName(),estudianteJpa.getSurname()) != null;
     }
 }

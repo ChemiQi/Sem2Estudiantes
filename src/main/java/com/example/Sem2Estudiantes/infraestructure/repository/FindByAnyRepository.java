@@ -46,9 +46,15 @@ public class FindByAnyRepository implements FindByAnyEstudiantePort {
 
     @Override
     public List<EstudianteJpa> listaPersonalizada2(HashMap<String, Object> conditions){
+        //TODO recibir un DTO de input. No usar HashMap
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<EstudianteJpa> query = criteriaBuilder.createQuery(EstudianteJpa.class);
         Root<EstudianteJpa> root = query.from(EstudianteJpa.class);
+
+        addPredicate(name,dfkdm)
+
+         if (name!=null)
+             predicates.add(criteriaBuilder.like(root.get("name"),name));
 
         List<Predicate> predicates = new ArrayList<>();
         conditions.forEach((field, value) -> {

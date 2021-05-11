@@ -16,6 +16,7 @@ public class DeleteEstudianteRepository implements DeleteEstudiantePort {
     @Override
     public ResponseEntity<EstudianteDtoOutput> borrarEstudiante(String id) throws Exception{
         try{
+            //TODO no comprobais si existe.
             estudianteRepository.deleteById(id);
             return ResponseEntity.ok().build();
         }catch (Exception e){

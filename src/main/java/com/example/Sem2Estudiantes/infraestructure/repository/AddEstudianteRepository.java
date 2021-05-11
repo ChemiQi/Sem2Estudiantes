@@ -25,15 +25,17 @@ public class AddEstudianteRepository implements AddEstudiantePort {
                 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
             }
         }else {
+            //TODO porque no lanza directamente la exception la funcion comprobarFechaEntrada ?
             throw new Exception("Fecha de entrada mayor que fecha salida");
         }
     }
 
+    //TODO los Repository no deben devolver ResponseEntity. Eso es labor del controlador.
+    private ResponseEntity<EstudianteDtoOutput> añadirEstudianteRepository(EstudianteDtoInput estudianteDtoInput)
+    {
 
-    private ResponseEntity<EstudianteDtoOutput> añadirEstudianteRepository(EstudianteDtoInput estudianteDtoInput){
         if(!comprobarNombreYApellido(estudianteDtoInput)) {
             try {
-
                 estudianteRepository.save(new EstudianteJpa(estudianteDtoInput));
                 EstudianteDtoOutput estudianteDtoOutput = new EstudianteDtoOutput(estudianteDtoInput);
                 return ResponseEntity.ok(estudianteDtoOutput);
@@ -41,6 +43,7 @@ public class AddEstudianteRepository implements AddEstudiantePort {
                 return ResponseEntity.notFound().build(); // hemos puesto notFound porque no sabemos muy bien cual poner
             }
         }else{
+            //TODO que mensaje es este :-D
             System.out.println("NO ENTRA EN EL ENCONTRAR APELLIDO Y BOMBRE");
 
             return ResponseEntity.notFound().build();
@@ -48,12 +51,15 @@ public class AddEstudianteRepository implements AddEstudiantePort {
 
     }
     private boolean comprobarNombreYApellido(EstudianteDtoInput estudianteDtoInput){
-        if(estudianteRepository.findByNameAndSurname(estudianteDtoInput.getName(),estudianteDtoInput.getSurname()) != null){
-            return true;
-        }
-        return false;
+        //TODO cambiar por
+         return estudianteRepository.findByNameAndSurname(estudianteDtoInput.getName(),estudianteDtoInput.getSurname()) != null;
+//        if(estudianteRepository.findByNameAndSurname(estudianteDtoInput.getName(),estudianteDtoInput.getSurname()) != null){
+//            return true;
+//        }
+//        return false;
     }
     private boolean comprobarFechaEntradaySalida(EstudianteDtoInput estudianteDtoInput){
+        //TODO Y si la fecha de inicio es null que pasa ?. Cambiar por return directamente
         if(estudianteDtoInput.getTerminationDate() != null && !estudianteDtoInput.getCreateDate().before(estudianteDtoInput.getTerminationDate())){
             return false;
         }else{
