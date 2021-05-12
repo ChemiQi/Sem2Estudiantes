@@ -51,10 +51,10 @@ public class FindByAnyRepository implements FindByAnyEstudiantePort {
         CriteriaQuery<EstudianteJpa> query = criteriaBuilder.createQuery(EstudianteJpa.class);
         Root<EstudianteJpa> root = query.from(EstudianteJpa.class);
 
-        addPredicate(name,dfkdm)
+        /*addPredicate(name,dfkdm)
 
          if (name!=null)
-             predicates.add(criteriaBuilder.like(root.get("name"),name));
+             predicates.add(criteriaBuilder.like(root.get("name"),name));*/
 
         List<Predicate> predicates = new ArrayList<>();
         conditions.forEach((field, value) -> {

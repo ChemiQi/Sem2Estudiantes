@@ -46,13 +46,13 @@ public class EstudianteJpa {
     @Email
     @NotBlank
     @Column(unique = true)
-    String company_email;
+    String companyEmail;
 
     @NotNull(message = "Correo electronico personal necesario")
     @Email
     @NotBlank
     @Column(unique = true)
-    String personal_email;
+    String personalEmail;
 
     @NotNull(message = "Ciudad necesaria")
     String city;
@@ -79,8 +79,8 @@ public class EstudianteJpa {
     public EstudianteJpa(EstudianteDtoInput estudianteDtoInput){
         this.name = estudianteDtoInput.getName();
         this.surname = estudianteDtoInput.getSurname();
-        this.personal_email = estudianteDtoInput.getPersonal_email();
-        this.company_email = estudianteDtoInput.getCompany_email();
+        this.personalEmail = estudianteDtoInput.getPersonal_email();
+        this.companyEmail = estudianteDtoInput.getCompany_email();
         this.createDate = estudianteDtoInput.getCreateDate();
         this.city = estudianteDtoInput.getCity();
         this.numHoursWeek = estudianteDtoInput.getNumHoursWeek();

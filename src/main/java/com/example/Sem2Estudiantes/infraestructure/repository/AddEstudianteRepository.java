@@ -1,6 +1,7 @@
 package com.example.Sem2Estudiantes.infraestructure.repository;
 
 import com.example.Sem2Estudiantes.domain.EstudianteJpa;
+import com.example.Sem2Estudiantes.exceptions.EmailPersonalRepetidoException;
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoInput;
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoOutput;
 import com.example.Sem2Estudiantes.infraestructure.repository.jpa.EstudianteRepository;
@@ -20,7 +21,6 @@ public class AddEstudianteRepository implements AddEstudiantePort {
                 return añadirEstudianteRepository(estudianteDtoInput);
         }else {
             //TODO porque no lanza directamente la exception la funcion comprobarFechaEntrada ?
-            System.out.println("ENTRA EN FECHA DE ENTRDA MAYOR QEU FECHA SALIDA");
             throw new Exception("Fecha de entrada mayor que fecha salida");
         }
     }
@@ -28,23 +28,14 @@ public class AddEstudianteRepository implements AddEstudiantePort {
     //TODO los Repository no deben devolver ResponseEntity. Eso es labor del controlador. -> corregido
     private EstudianteDtoOutput añadirEstudianteRepository(EstudianteDtoInput estudianteDtoInput) throws Exception
     {
-        if(!comprobarNombreYApellido(estudianteDtoInput)) {
+        if(comprobarDatos(estudianteDtoInput)) {
                 estudianteRepository.save(new EstudianteJpa(estudianteDtoInput));
                 EstudianteDtoOutput estudianteDtoOutput = new EstudianteDtoOutput(estudianteDtoInput);
                 return estudianteDtoOutput;
         }else{
-            System.out.println("ENTRA EN Nombre y apellidos repetidos");
-            throw new Exception("Nombre y apellidos repetidos");
+            throw new Exception("");
         }
 
-    }
-    private boolean comprobarNombreYApellido(EstudianteDtoInput estudianteDtoInput){
-        //TODO cambiar por
-         return estudianteRepository.findByNameAndSurname(estudianteDtoInput.getName(),estudianteDtoInput.getSurname()) != null;
-//        if(estudianteRepository.findByNameAndSurname(estudianteDtoInput.getName(),estudianteDtoInput.getSurname()) != null){
-//            return true;
-//        }
-//        return false;
     }
     private boolean comprobarFechaEntradaySalida(EstudianteDtoInput estudianteDtoInput) throws Exception{
         //TODO Y si la fecha de inicio es null que pasa ?. Cambiar por return directamente
@@ -53,5 +44,16 @@ public class AddEstudianteRepository implements AddEstudiantePort {
         }else{
             return estudianteDtoInput.getCreateDate().before(estudianteDtoInput.getTerminationDate());
         }
+    }
+
+    private boolean comprobarDatos(EstudianteDtoInput estudianteDtoInput) throws Exception{
+        if(estudianteRepository.findByNameAndSurname(estudianteDtoInput.getName(),estudianteDtoInput.getSurname()) != null)
+            throw new Exception("Nombre y apellidos duplicados");
+        if(estudianteRepository.findByPersonalEmail(estudianteDtoInput.getPersonal_email()) != null)
+            throw new EmailPersonalRepetidoException();
+        if(estudianteRepository.findByCompanyEmail(estudianteDtoInput.getCompany_email()) != null)
+            throw new Exception("Email de empresa repetida");
+
+        return true;
     }
 }

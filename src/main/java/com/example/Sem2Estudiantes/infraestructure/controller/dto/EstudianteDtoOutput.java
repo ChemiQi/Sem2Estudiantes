@@ -67,8 +67,8 @@ public class EstudianteDtoOutput {
 
         this.name = estudianteJpa.getName();
         this.surname = estudianteJpa.getSurname();
-        this.personal_email = estudianteJpa.getPersonal_email();
-        this.company_email = estudianteJpa.getCompany_email();
+        this.personal_email = estudianteJpa.getPersonalEmail();
+        this.company_email = estudianteJpa.getCompanyEmail();
         this.createDate = estudianteJpa.getCreateDate();
         this.city = estudianteJpa.getCity();
         this.numHoursWeek = estudianteJpa.getNumHoursWeek();

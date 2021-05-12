@@ -1,6 +1,7 @@
 package com.example.Sem2Estudiantes.infraestructure.repository;
 
 import com.example.Sem2Estudiantes.domain.EstudianteJpa;
+import com.example.Sem2Estudiantes.exceptions.NotFoundException;
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoInput;
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoOutput;
 import com.example.Sem2Estudiantes.infraestructure.repository.jpa.EstudianteRepository;
@@ -18,7 +19,7 @@ public class UpdateEstudianteRepository implements UpdateEstudiantePort {
 
     @Override
     public ResponseEntity<EstudianteDtoOutput> actualizarEstudiante(String id,EstudianteDtoInput estudianteDtoInput) throws Exception{
-        var estudianteEncontrado = estudianteRepository.findById(id).orElseThrow(() -> new Exception("NO econtrado estudiatne con id: "+id)) ; //USAR ELSETRHOW, pero nose muy bien como funciona
+        var estudianteEncontrado = estudianteRepository.findById(id).orElseThrow(() -> new NotFoundException()) ;
 
 
         EstudianteJpa estudianteActualizado = actualizarDatosEstudiante(estudianteEncontrado,estudianteDtoInput);
@@ -40,9 +41,9 @@ public class UpdateEstudianteRepository implements UpdateEstudiantePort {
         if(estudianteDtoInput.getSurname() != null)
             estudianteEncontrado.setSurname(estudianteDtoInput.getSurname());
         if(estudianteDtoInput.getCompany_email() != null)
-            estudianteEncontrado.setPersonal_email(estudianteDtoInput.getCompany_email());
+            estudianteEncontrado.setPersonalEmail(estudianteDtoInput.getCompany_email());
         if(estudianteDtoInput.getPersonal_email() != null)
-            estudianteEncontrado.setPersonal_email(estudianteDtoInput.getPersonal_email());
+            estudianteEncontrado.setPersonalEmail(estudianteDtoInput.getPersonal_email());
         if(estudianteDtoInput.getComents() != null)
             estudianteEncontrado.setComents(estudianteDtoInput.getComents());
         if(estudianteDtoInput.getCity() != null)
