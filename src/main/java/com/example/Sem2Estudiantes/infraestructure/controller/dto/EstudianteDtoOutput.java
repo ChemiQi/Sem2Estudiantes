@@ -59,7 +59,7 @@ public class EstudianteDtoOutput {
         this.numHoursWeek = estudianteDtoInput.getNumHoursWeek();
         this.coments = estudianteDtoInput.getComents();
         this.branch = estudianteDtoInput.getBranch();
-        this.active = estudianteDtoInput.isActive();
+        this.active = estudianteDtoInput.getActive();
         this.terminationDate = estudianteDtoInput.getTerminationDate();
     }
 
@@ -74,7 +74,7 @@ public class EstudianteDtoOutput {
         this.numHoursWeek = estudianteJpa.getNumHoursWeek();
         this.coments = estudianteJpa.getComents();
         this.branch = estudianteJpa.getBranch();
-        this.active = estudianteJpa.isActive();
+        this.active = estudianteJpa.getActive();
         this.terminationDate = estudianteJpa.getTerminationDate();
         //this.especialidad = estudianteJpa.getEspecialidad();
         //this.estado = estudianteJpa.getEstado();

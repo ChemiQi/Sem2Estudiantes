@@ -26,13 +26,13 @@ public class EstudianteDtoInput {
 
     String city;
 
-    double numHoursWeek;
+    Double numHoursWeek;
 
     String coments;
 
     branch branch;
 
-    boolean active;
+    Boolean active;
 
     //@DateTimeFormat(pattern = "dd/MM/yyyy")
     @JsonFormat(pattern = "dd/MM/yyyy")

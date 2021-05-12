@@ -2,6 +2,8 @@ package com.example.Sem2Estudiantes.infraestructure.repository;
 
 import com.example.Sem2Estudiantes.domain.EstudianteJpa;
 import com.example.Sem2Estudiantes.exceptions.EmailPersonalRepetidoException;
+import com.example.Sem2Estudiantes.exceptions.FechasInvalidasException;
+import com.example.Sem2Estudiantes.exceptions.NombreYApellidoRepetidoException;
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoInput;
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoOutput;
 import com.example.Sem2Estudiantes.infraestructure.repository.jpa.EstudianteRepository;
@@ -21,7 +23,7 @@ public class AddEstudianteRepository implements AddEstudiantePort {
                 return añadirEstudianteRepository(estudianteDtoInput);
         }else {
             //TODO porque no lanza directamente la exception la funcion comprobarFechaEntrada ?
-            throw new Exception("Fecha de entrada mayor que fecha salida");
+            throw new FechasInvalidasException("Fecha de entrada mayor que fecha salida");
         }
     }
 
@@ -33,7 +35,7 @@ public class AddEstudianteRepository implements AddEstudiantePort {
                 EstudianteDtoOutput estudianteDtoOutput = new EstudianteDtoOutput(estudianteDtoInput);
                 return estudianteDtoOutput;
         }else{
-            throw new Exception("");
+            throw new Exception(); // ME OBLIGA A PONER ESTO
         }
 
     }
@@ -48,11 +50,11 @@ public class AddEstudianteRepository implements AddEstudiantePort {
 
     private boolean comprobarDatos(EstudianteDtoInput estudianteDtoInput) throws Exception{
         if(estudianteRepository.findByNameAndSurname(estudianteDtoInput.getName(),estudianteDtoInput.getSurname()) != null)
-            throw new Exception("Nombre y apellidos duplicados");
+            throw new NombreYApellidoRepetidoException();
         if(estudianteRepository.findByPersonalEmail(estudianteDtoInput.getPersonal_email()) != null)
-            throw new EmailPersonalRepetidoException();
+            throw new EmailPersonalRepetidoException("Email personal ya existente");
         if(estudianteRepository.findByCompanyEmail(estudianteDtoInput.getCompany_email()) != null)
-            throw new Exception("Email de empresa repetida");
+            throw new EmailPersonalRepetidoException("Email de empresa repetida");
 
         return true;
     }

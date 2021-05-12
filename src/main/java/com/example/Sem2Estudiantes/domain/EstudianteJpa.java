@@ -66,7 +66,7 @@ public class EstudianteJpa {
     branch branch;
 
     @NotNull
-    boolean active;
+    Boolean active;
 
     @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")//@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -86,9 +86,22 @@ public class EstudianteJpa {
         this.numHoursWeek = estudianteDtoInput.getNumHoursWeek();
         this.coments = estudianteDtoInput.getComents();
         this.branch = estudianteDtoInput.getBranch();
-        this.active = estudianteDtoInput.isActive();
+        this.active = estudianteDtoInput.getActive();
         this.terminationDate = estudianteDtoInput.getTerminationDate();
         //this.especialidad = estudianteDtoInput.getEspecialidad();
         //this.estado = estudianteDtoInput.getEstado();
+    }
+    public EstudianteJpa(EstudianteJpa estudianteJpa, EstudianteDtoInput estudianteDtoInput){
+        this.name = (estudianteDtoInput.getName() != null)?estudianteDtoInput.getName() : estudianteJpa.getName();
+        this.surname = (estudianteDtoInput.getSurname() != null)?estudianteDtoInput.getSurname() : estudianteJpa.getSurname();
+        this.personalEmail = (estudianteDtoInput.getPersonal_email() != null)?estudianteDtoInput.getPersonal_email() : estudianteJpa.getPersonalEmail();
+        this.companyEmail = (estudianteDtoInput.getCompany_email() != null)?estudianteDtoInput.getCompany_email() : estudianteJpa.getCompanyEmail();
+        this.createDate = (estudianteDtoInput.getCreateDate() != null)?estudianteDtoInput.getCreateDate() : estudianteJpa.getCreateDate();
+        this.city = (estudianteDtoInput.getCity() != null)?estudianteDtoInput.getCity() : estudianteJpa.getCity();
+        this.numHoursWeek = (estudianteDtoInput.getNumHoursWeek() != null)?estudianteDtoInput.getNumHoursWeek() : estudianteJpa.getNumHoursWeek();
+        this.coments = (estudianteDtoInput.getComents() != null)?estudianteDtoInput.getComents() : estudianteJpa.getComents();
+        this.branch = (estudianteDtoInput.getBranch() != null)?estudianteDtoInput.getBranch() : estudianteJpa.getBranch();
+        this.active = (estudianteDtoInput.getActive() != null)?estudianteDtoInput.getActive() : estudianteJpa.getActive();
+        this.terminationDate = (estudianteDtoInput.getTerminationDate() != null)?estudianteDtoInput.getTerminationDate() : estudianteJpa.getTerminationDate();
     }
 }
