@@ -30,8 +30,8 @@ public class AddEstudianteController  {
             // Error - Warning - Info - trace - Debug
             log.debug("");
             System.out.println(estudianteDtoInput.toString());
-            EstudianteDtoOutput estudianteDtoOutput = addEstudiantePort.añadirEstudiante(estudianteDtoInput);
-            return  ResponseEntity.status(HttpStatus.ACCEPTED).body("Creado correctamente");
+            addEstudiantePort.añadirEstudiante(estudianteDtoInput);
+            return  ResponseEntity.status(HttpStatus.CREATED).body("Creado correctamente");
         } catch(Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

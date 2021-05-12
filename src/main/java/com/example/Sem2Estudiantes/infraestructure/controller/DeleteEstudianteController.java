@@ -4,6 +4,7 @@ import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoO
 import com.example.Sem2Estudiantes.infraestructure.repository.port.AddEstudiantePort;
 import com.example.Sem2Estudiantes.infraestructure.repository.port.DeleteEstudiantePort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,12 @@ public class DeleteEstudianteController {
     private DeleteEstudiantePort deleteEstudiantePort;
 
     @DeleteMapping("{id}")
-    public ResponseEntity<EstudianteDtoOutput> borrarEstudiante(@PathVariable String id) throws Exception {
-            return deleteEstudiantePort.borrarEstudiante(id);
+    public ResponseEntity borrarEstudiante(@PathVariable String id) throws Exception {
+        try {
+            deleteEstudiantePort.borrarEstudiante(id);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Borrado correctamente");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 }

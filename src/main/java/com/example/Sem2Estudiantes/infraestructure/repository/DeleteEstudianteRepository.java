@@ -1,5 +1,7 @@
 package com.example.Sem2Estudiantes.infraestructure.repository;
 
+import com.example.Sem2Estudiantes.domain.EstudianteJpa;
+import com.example.Sem2Estudiantes.exceptions.NotFoundException;
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoOutput;
 import com.example.Sem2Estudiantes.infraestructure.repository.jpa.EstudianteRepository;
 import com.example.Sem2Estudiantes.infraestructure.repository.port.DeleteEstudiantePort;
@@ -14,13 +16,7 @@ public class DeleteEstudianteRepository implements DeleteEstudiantePort {
     EstudianteRepository estudianteRepository;
 
     @Override
-    public ResponseEntity<EstudianteDtoOutput> borrarEstudiante(String id) throws Exception{
-        try{
-            //TODO no comprobais si existe.
-            estudianteRepository.deleteById(id);
-            return ResponseEntity.ok().build();
-        }catch (Exception e){
-            throw new Exception("Error al borrar por ID");
-        }
+    public void borrarEstudiante(String id) throws Exception{
+        estudianteRepository.delete(estudianteRepository.findById(id).orElseThrow(() -> new NotFoundException()));
     }
 }
