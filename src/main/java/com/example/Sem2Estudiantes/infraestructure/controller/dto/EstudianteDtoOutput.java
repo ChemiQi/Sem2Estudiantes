@@ -16,24 +16,32 @@ import java.util.Date;
 public class EstudianteDtoOutput {
 
 
-
+    @NotNull
     String name;
 
+    @NotNull
     String surname;
 
+    @NotNull
     String company_email;
 
+    @NotNull
     String personal_email;
 
+    @NotNull
     String city;
 
-    double numHoursWeek;
+    @NotNull
+    Double numHoursWeek;
 
+    @NotNull
     String coments;
 
+    @NotNull
     branch branch;
 
-    boolean active;
+    @NotNull
+    Boolean active;
 
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
