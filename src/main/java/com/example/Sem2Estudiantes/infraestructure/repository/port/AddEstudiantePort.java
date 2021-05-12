@@ -5,5 +5,5 @@ import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoO
 import org.springframework.http.ResponseEntity;
 
 public interface AddEstudiantePort {
-    ResponseEntity<EstudianteDtoOutput> añadirEstudiante(EstudianteDtoInput estudianteDtoInput) throws Exception;
+    EstudianteDtoOutput añadirEstudiante(EstudianteDtoInput estudianteDtoInput) throws Exception;
 }

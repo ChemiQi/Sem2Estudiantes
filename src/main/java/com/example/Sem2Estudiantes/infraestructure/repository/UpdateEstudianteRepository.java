@@ -17,25 +17,21 @@ public class UpdateEstudianteRepository implements UpdateEstudiantePort {
     EstudianteRepository estudianteRepository;
 
     @Override
-    public ResponseEntity<EstudianteDtoOutput> actualizarEstudiante(String id,EstudianteDtoInput estudianteDtoInput) {
-        return actualizarEstudianteRepository(id,estudianteDtoInput);
+    public ResponseEntity<EstudianteDtoOutput> actualizarEstudiante(String id,EstudianteDtoInput estudianteDtoInput) throws Exception{
+        var estudianteEncontrado = estudianteRepository.findById(id).orElseThrow(() -> new Exception("NO econtrado estudiatne con id: "+id)) ; //USAR ELSETRHOW, pero nose muy bien como funciona
+
+
+        EstudianteJpa estudianteActualizado = actualizarDatosEstudiante(estudianteEncontrado,estudianteDtoInput);
+        if(!comprobarNombreYApellido(estudianteActualizado)){
+            // estudianteRepository.save(actualizarDatosEstudiante(estudianteEncontrado,estudianteDtoInput));
+            estudianteRepository.save(estudianteActualizado);  //--> No se si es la mejor manera de hacerlo, ya que ocupo espacio al guardar estudianteActualizado
+            return ResponseEntity.ok().build();
+        }else {
+            System.out.println("No actualiza, nombre y apellidos repetidos");
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    private ResponseEntity<EstudianteDtoOutput> actualizarEstudianteRepository(String id,EstudianteDtoInput estudianteDtoInput)  throws Exception{
-            var estudianteEncontrado = estudianteRepository.findById(id).orElseThrow(() -> new Exception("NO econtrado estudiatne con id: "+id)) ; //USAR ELSETRHOW, pero nose muy bien como funciona
-
-
-            EstudianteJpa estudianteActualizado = actualizarDatosEstudiante(estudianteEncontrado,estudianteDtoInput);
-            if(!comprobarNombreYApellido(estudianteActualizado)){
-               // estudianteRepository.save(actualizarDatosEstudiante(estudianteEncontrado,estudianteDtoInput));
-                estudianteRepository.save(estudianteActualizado);  //--> No se si es la mejor manera de hacerlo, ya que ocupo espacio al guardar estudianteActualizado
-                return ResponseEntity.ok().build();
-            }else {
-                System.out.println("No actualiza, nombre y apellidos repetidos");
-                return ResponseEntity.notFound().build();
-            }
-
-    }
 
     private EstudianteJpa actualizarDatosEstudiante(EstudianteJpa estudianteEncontrado, EstudianteDtoInput estudianteDtoInput) {
 
