@@ -1,6 +1,7 @@
 package com.example.Sem2Estudiantes.infraestructure.repository;
 
 import com.example.Sem2Estudiantes.domain.EstudianteJpa;
+import com.example.Sem2Estudiantes.exceptions.NotFoundException;
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoOutput;
 import com.example.Sem2Estudiantes.infraestructure.repository.jpa.EstudianteRepository;
 import com.example.Sem2Estudiantes.infraestructure.repository.port.FindByIdEstudiantePort;
@@ -17,17 +18,10 @@ public class FindByIdEstudianteRepository implements FindByIdEstudiantePort {
     EstudianteRepository estudianteRepository;
 
     @Override
-    public ResponseEntity<EstudianteDtoOutput> findByIdEstudiante(String id) {
-            return obtenerEstudianteDtoOutputByIdEstudiante(id);
+    public EstudianteDtoOutput findByIdEstudiante(String id) throws Exception {
+        return new EstudianteDtoOutput(estudianteRepository.findById(id).orElseThrow(() -> new NotFoundException()));
     }
 
-    private ResponseEntity<EstudianteDtoOutput> obtenerEstudianteDtoOutputByIdEstudiante(String id) {
-        Optional<EstudianteJpa> estudianteJpaOptional = estudianteRepository.findById(id);
-        if(estudianteJpaOptional.isPresent()){
-            return ResponseEntity.ok(new EstudianteDtoOutput(estudianteJpaOptional.get()));
-        }else{
-            return ResponseEntity.notFound().build();
-        }
-    }
+
     
 }
