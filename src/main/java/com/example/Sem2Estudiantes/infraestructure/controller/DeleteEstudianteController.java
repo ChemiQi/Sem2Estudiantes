@@ -3,12 +3,14 @@ package com.example.Sem2Estudiantes.infraestructure.controller;
 import com.example.Sem2Estudiantes.infraestructure.controller.dto.EstudianteDtoOutput;
 import com.example.Sem2Estudiantes.infraestructure.repository.port.AddEstudiantePort;
 import com.example.Sem2Estudiantes.infraestructure.repository.port.DeleteEstudiantePort;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Slf4j
 @RequestMapping("estudiante")
 @CrossOrigin("*")
 public class DeleteEstudianteController {
@@ -19,9 +21,11 @@ public class DeleteEstudianteController {
     @DeleteMapping("{id}")
     public ResponseEntity borrarEstudiante(@PathVariable String id) throws Exception {
         try {
+            log.info("Borrando estudiante");
             deleteEstudiantePort.borrarEstudiante(id);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body("Borrado correctamente");
         }catch (Exception e){
+            log.error("Error al borrar estudiante", e);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }

@@ -28,11 +28,12 @@ public class AddEstudianteController  {
     public ResponseEntity añadirEstudiante(@Valid @RequestBody EstudianteDtoInput estudianteDtoInput)  {
         try{
             // Error - Warning - Info - trace - Debug
-            log.debug("");
+            log.info("Añadiendo el estudiante");
             System.out.println(estudianteDtoInput.toString());
             addEstudiantePort.añadirEstudiante(estudianteDtoInput);
             return  ResponseEntity.status(HttpStatus.CREATED).body("Creado correctamente");
         } catch(Exception e){
+            log.error("Error al añadir estudiante", e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }

@@ -13,11 +13,12 @@ import java.util.Date;
 @NoArgsConstructor
 public class EstudianteSearchInputDto {
 
+    String name;
     String surname;
     String company_email;
     String personal_email;
     String city;
-    Double numHoursWeek;
+    Integer numHoursWeek;
     String coments;
     branch branch;
     Boolean active;
